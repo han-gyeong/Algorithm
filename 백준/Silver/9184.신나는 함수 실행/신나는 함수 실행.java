@@ -1,4 +1,5 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class Main {
     static int[][][] arr;
@@ -22,14 +23,15 @@ public class Main {
         return arr[a][b][c] = w(a-1, b, c) + w(a-1, b-1, c) + w(a-1, b, c-1) - w(a-1, b-1, c-1);
     }
 
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         arr = new int[51][51][51];
         StringBuffer sb = new StringBuffer();
         while (true) {
-            int a = scan.nextInt();
-            int b = scan.nextInt();
-            int c = scan.nextInt();
+            String[] s = br.readLine().split(" ");
+            int a = Integer.parseInt(s[0]);
+            int b = Integer.parseInt(s[1]);
+            int c = Integer.parseInt(s[2]);
             if (a == -1 && b == -1 && c == -1) {
                 break;
             }

@@ -13,8 +13,7 @@ public class Main {
         for (int i = 0; i < n; i++) {
             numList.add(scan.nextInt());
         }
-
-        boolean isPossible = true;
+        
         int current = 1;
         for (int i = 0; i < numList.size(); i++) {
             if (stack.isEmpty() || stack.peek() < numList.get(i)) {
@@ -28,11 +27,11 @@ public class Main {
                 stack.pop();
                 sb.append('-').append('\n');
             } else if (stack.peek() < numList.get(i)) {
-                isPossible = false;
+                break;
             }
         }
 
-        if (!stack.isEmpty() || !isPossible) {
+        if (!stack.isEmpty()) {
             System.out.println("NO");
         } else {
             System.out.println(sb);

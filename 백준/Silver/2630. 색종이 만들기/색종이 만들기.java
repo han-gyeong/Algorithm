@@ -9,6 +9,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
         n = Integer.parseInt(br.readLine());
         arr = new int[n][];
         answer = new int[2];
@@ -19,8 +20,11 @@ public class Main {
 
         recursive(0, 0, n);
 
-        System.out.println(answer[0]); // WHITE
-        System.out.println(answer[1]); // BLUE
+        sb.append(answer[0]); // WHITE
+        sb.append('\n');
+        sb.append(answer[1]); // BLUE
+
+        System.out.println(sb);
     }
 
     public static void recursive(int x, int y, int size) {

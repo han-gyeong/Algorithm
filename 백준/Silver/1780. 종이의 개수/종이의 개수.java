@@ -21,9 +21,11 @@ public class Main {
 
         recursive(0, 0, n);
 
-        System.out.println(answer[0]);
-        System.out.println(answer[1]);
-        System.out.println(answer[2]);
+        sb.append(answer[0]).append('\n');
+        sb.append(answer[1]).append('\n');
+        sb.append(answer[2]);
+
+        System.out.println(sb);
     }
 
     public static void recursive(int x, int y, int size) {

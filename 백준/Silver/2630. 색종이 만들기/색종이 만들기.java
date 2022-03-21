@@ -1,4 +1,6 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class Main {
     static int n;
@@ -6,21 +8,19 @@ public class Main {
     static int[] answer;
 
     public static void main(String[] args) throws Exception {
-        Scanner scan = new Scanner(System.in);
-        n = scan.nextInt();
-        arr = new int[n][n];
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        n = Integer.parseInt(br.readLine());
+        arr = new int[n][];
         answer = new int[2];
 
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                arr[i][j] = scan.nextInt();
-            }
+            arr[i] = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         }
 
         recursive(0, 0, n);
 
-        System.out.println(answer[0]);
-        System.out.println(answer[1]);
+        System.out.println(answer[0]); // WHITE
+        System.out.println(answer[1]); // BLUE
     }
 
     public static void recursive(int x, int y, int size) {

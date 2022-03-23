@@ -7,9 +7,7 @@ public class Main {
         int n = scan.nextInt();
         int k = scan.nextInt();
 
-
-        long foundAnswer = find(factorial(n - k) * factorial(k), DIVISON - 2);
-
+        long foundAnswer = find(factorial(n - k) * factorial(k), DIVISON - 2); // 곱셈의 역원 (n!(n-k)!)^(m-2)
 
         long answer = (factorial(n) * foundAnswer) % DIVISON;
         System.out.println(answer);
@@ -21,7 +19,7 @@ public class Main {
             answer = (answer * n) % DIVISON;
             n--;
         }
-
+        
         return answer;
     }
 

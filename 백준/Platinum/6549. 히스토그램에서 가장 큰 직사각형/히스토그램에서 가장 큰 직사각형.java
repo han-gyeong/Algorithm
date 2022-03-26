@@ -35,9 +35,9 @@ public class Main {
                 }
 
                 elements.add(new Element(previous_index, arr[i]));
+            } else {
+                elements.add(new Element(i, arr[i]));
             }
-
-            elements.add(new Element(i, arr[i]));
         }
 
         while (!elements.isEmpty()) {

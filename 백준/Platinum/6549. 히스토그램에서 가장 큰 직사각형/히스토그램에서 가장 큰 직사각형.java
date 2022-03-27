@@ -1,23 +1,32 @@
-import java.util.Scanner;
+// 참고: https://st-lab.tistory.com/255
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
     static int[] arr;
     public static void main(String[] args) throws Exception {
-        Scanner scan = new Scanner(System.in);
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuffer sb = new StringBuffer();
+        StringTokenizer st;
 
         while (true) {
-            int n = scan.nextInt();
+            st = new StringTokenizer(br.readLine(), " ");
+            int n = Integer.parseInt(st.nextToken());
             if (n == 0) {
                 break;
             }
 
             arr = new int[n];
             for (int i = 0; i < n; i++) {
-                arr[i] = scan.nextInt();
+                arr[i] = Integer.parseInt(st.nextToken());
             }
 
-            System.out.println(getArea(0, n-1));
+            sb.append(getArea(0, n-1)).append('\n');
         }
+
+        System.out.println(sb);
     }
 
     private static long getArea(int from, int to) {
@@ -29,11 +38,7 @@ public class Main {
         long leftArea = getArea(from, mid);
         long rightArea = getArea(mid + 1, to);
 
-        long answer = Math.max(leftArea, rightArea);
-
-        long midArea = getMidArea(from, mid, to);
-
-        return Math.max(answer, midArea);
+        return Math.max(Math.max(leftArea, rightArea), getMidArea(from, mid, to));
     }
 
     private static long getMidArea(int from, int mid, int to) {

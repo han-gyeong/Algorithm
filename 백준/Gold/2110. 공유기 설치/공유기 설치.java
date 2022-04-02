@@ -19,9 +19,7 @@ public class Main {
         while (lt < rt) {
             long mid = (lt + rt) / 2;
 
-            int router = find(arr, mid);
-
-            if (router >= c) {
+            if (find(arr, mid) >= c) {
                 lt = mid + 1;
             } else {
                 rt = mid;

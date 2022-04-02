@@ -35,7 +35,7 @@ public class Main {
         int lastHouse = arr[0];
         int router = 1;
         for (int i = 1; i < arr.length; i++) {
-            if (arr[i] - lastHouse >= minLength) {
+            if (lastHouse + minLength <= arr[i]) {
                 router++;
                 lastHouse = arr[i];
             }

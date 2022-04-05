@@ -24,25 +24,23 @@ public class Main {
             graph.get(b).add(a);
         }
 
-        ch[startNode] = 1;
-        System.out.print(startNode + " ");
         DFS(startNode, 1);
-
         System.out.println();
+
         ch = new int[node + 1];
         BFS(startNode);
     }
 
     public static void DFS(int beforeNum, int index) {
+        ch[beforeNum] = 1;
+        System.out.print(beforeNum + " ");
+
         if (index == node) {
             return;
         } else {
-            int before = beforeNum;
-            graph.get(before).sort(Comparator.naturalOrder());
-            for (int x : graph.get(before)) {
+            graph.get(beforeNum).sort(Comparator.naturalOrder());
+            for (int x : graph.get(beforeNum)) {
                 if (ch[x] == 0) {
-                    ch[x] = 1;
-                    System.out.print(x + " ");
                     DFS(x, index + 1);
                 }
             }
@@ -54,7 +52,7 @@ public class Main {
         queue.add(startNode);
         ch[startNode] = 1;
 
-        while (!queue.isEmpty() ) {
+        while (!queue.isEmpty()) {
             int size = queue.size();
 
             for (int i = 0; i < size; i++) {

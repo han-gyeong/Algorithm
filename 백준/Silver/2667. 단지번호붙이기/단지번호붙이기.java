@@ -10,6 +10,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
         number = Integer.parseInt(br.readLine());
         arr = new int[number][];
         ch = new int[number][number];
@@ -24,7 +25,7 @@ public class Main {
                 if (ch[i][j] == 0 && arr[i][j] == 1) {
                     count = 1; // 단지 내의 아파트 갯수 count 초기화
                     ch[i][j] = 1;
-                    
+
                     DFS(i, j);
                     answer.add(count);
                 }
@@ -32,10 +33,10 @@ public class Main {
         }
 
         answer.sort(Comparator.naturalOrder());
-        System.out.println(answer.size());
-        for (Integer x : answer) {
-            System.out.println(x);
-        }
+        sb.append(answer.size()).append('\n');
+        answer.forEach(x -> sb.append(x).append('\n'));
+
+        System.out.println(sb);
     }
 
     private static void DFS(int x, int y) {

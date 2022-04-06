@@ -3,68 +3,50 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class Main {
-    static int[] dx = new int[] {0, 1, -1, 0};
-    static int[] dy = new int[] {-1, 0, 0, 1}; // 왼쪽, 아래, 위, 오른쪽
+    static int[] dx = new int[]{0, 1, -1, 0};
+    static int[] dy = new int[]{-1, 0, 0, 1}; // 왼쪽, 아래, 위, 오른쪽
     static int[][] arr, ch;
-    static int number;
+    static int number, count;
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         number = Integer.parseInt(br.readLine());
         arr = new int[number][];
+        ch = new int[number][number];
 
         for (int i = 0; i < number; i++) {
             arr[i] = Arrays.stream(br.readLine().split("")).mapToInt(Integer::parseInt).toArray();
         }
 
-        int group = 0;
-        ArrayList<Integer> answers = new ArrayList<>();
-        ch = new int[number][number];
+        ArrayList<Integer> answer = new ArrayList<>();
         for (int i = 0; i < number; i++) {
             for (int j = 0; j < number; j++) {
                 if (ch[i][j] == 0 && arr[i][j] == 1) {
-                    group++;
+                    count = 1; // 단지 내의 아파트 갯수 count 초기화
                     ch[i][j] = 1;
-                    answers.add(BFS(i, j));
+                    
+                    DFS(i, j);
+                    answer.add(count);
                 }
             }
         }
 
-        answers.sort(Comparator.naturalOrder());
-        System.out.println(group);
-        for (Integer answer : answers) {
-            System.out.println(answer);
+        answer.sort(Comparator.naturalOrder());
+        System.out.println(answer.size());
+        for (Integer x : answer) {
+            System.out.println(x);
         }
     }
 
-    private static int BFS(int x, int y) {
-        int answer = 1;
-        Queue<Coord> queue = new LinkedList<>();
-        queue.add(new Coord(x, y));
-
-        while (!queue.isEmpty()) {
-            Coord coord = queue.poll();
-            for (int i = 0; i < dx.length; i++) {
-                int xC = coord.x + dx[i];
-                int yC = coord.y + dy[i];
-                if (xC >= 0 && xC < number && yC >= 0 && yC < number && arr[xC][yC] == 1 && ch[xC][yC] == 0) {
-                    ch[xC][yC] = 1;
-                    queue.add(new Coord(xC, yC));
-                    answer++;
-                }
+    private static void DFS(int x, int y) {
+        for (int i = 0; i < dx.length; i++) {
+            int toX = x + dx[i];
+            int toY = y + dy[i];
+            if (toX >= 0 && toX < number && toY >= 0 && toY < number && arr[toX][toY] == 1 && ch[toX][toY] == 0) {
+                ch[toX][toY] = 1;
+                count++;
+                DFS(toX, toY);
             }
-        }
-
-        return answer;
-    }
-
-    static class Coord {
-        int x;
-        int y;
-
-        public Coord(int x, int y) {
-            this.x = x;
-            this.y = y;
         }
     }
 }

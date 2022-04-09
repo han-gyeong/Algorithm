@@ -32,16 +32,19 @@ public class Main {
                     return level;
                 }
 
+                // + 1 이 K 보다 커질리가 없다. 못해도 같아야 한다.
                 if (tmp + 1 <= k && arr[tmp + 1] == 0) {
                     arr[tmp + 1] = 1;
                     queue.add(tmp + 1);
                 }
 
+                // N이 K 보다 큰 경우 뒤로도 가야하니까, 0보다 크도록.
                 if (tmp - 1 >= 0 && arr[tmp - 1] == 0) {
                     arr[tmp - 1] = 1;
                     queue.add(tmp - 1);
                 }
 
+                // K 보다 더 커졌을때 가능한 경우도 있으니, 범위를 <= K 가 아니라 <= 100000
                 if (tmp * 2 <= 100000 && arr[tmp * 2] == 0) {
                     arr[tmp * 2] = 1;
                     queue.add(tmp * 2);

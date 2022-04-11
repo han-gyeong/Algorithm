@@ -44,15 +44,19 @@ public class Main {
                     int toY = record.y + dy[j];
                     if (toX >= 0 && toX < arr.length && toY >= 0 && toY < arr[0].length) {
                         if (record.isCrushed) {
+                            // 벽을 부수고 이동한 경우에는, 벽이 없는 곳이면서 기존에 부순 상태로 안 간 곳만 이동 가능
                             if (arr[toX][toY] == 0 && !path[toX][toY][1]) {
                                 path[toX][toY][1] = true;
                                 queue.add(new Record(toX, toY, true));
                             }
-                        } else {
+                        } else { // 벽을 아직 안부쉈을때
+                            // 부숴야하는 벽인데 거기로 아직 안갔을 경우에 부숴보고
                             if (arr[toX][toY] == 1 && !path[toX][toY][1]) {
                                 path[toX][toY][1] = true;
                                 queue.add(new Record(toX, toY, true));
-                            } else if (arr[toX][toY] == 0 && !path[toX][toY][0]) {
+                            }
+                            // 부술 필요도 없고 안부순 상태로 아직 안간 경우
+                            else if (arr[toX][toY] == 0 && !path[toX][toY][0]) {
                                 path[toX][toY][0] = true;
                                 queue.add(new Record(toX, toY, false));
                             }

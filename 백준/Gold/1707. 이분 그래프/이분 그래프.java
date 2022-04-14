@@ -30,6 +30,8 @@ public class Main {
 
             int[] ch = new int[v + 1];
             String answer = "YES";
+
+            // 끊겨있는 그래프가 있을수도 있으니, ch 배열 확인해서 0인거(안돈거) 있으면 거기를 시작으로 다시
             for (int i = 1; i < ch.length; i++) {
                 if (ch[i] == 0) {
                     String tmp = BFS(graph, ch, i);
@@ -46,7 +48,7 @@ public class Main {
     public static String BFS(ArrayList<ArrayList<Integer>> graph, int[] ch, int startPoint) {
         Queue<Integer> queue = new LinkedList<>();
         queue.add(startPoint);
-        ch[startPoint] = 1; // 1은 RED 2는 BLACK
+        ch[startPoint] = -1; // -1 과 1 로 구분
 
         while (!queue.isEmpty()) {
             int size = queue.size();
@@ -61,11 +63,7 @@ public class Main {
                         queue.add(x);
                     }
 
-                    if (ch[tmp] == 1) {
-                        ch[x] = 2;
-                    } else {
-                        ch[x] = 1;
-                    }
+                    ch[x] = ch[tmp] * -1;
                 }
             }
         }

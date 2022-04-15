@@ -45,9 +45,12 @@ public class Main {
         }
 
 
+        StringBuilder sb = new StringBuilder();
         for (int i = 1; i < answer.length; i++) {
-            System.out.println(answer[i] == Integer.MAX_VALUE ? "INF" : answer[i]);
+            sb.append(answer[i] == Integer.MAX_VALUE ? "INF" : answer[i]).append('\n');
         }
+        
+        System.out.println(sb);
     }
 
     public static class Vertex implements Comparable<Vertex> {

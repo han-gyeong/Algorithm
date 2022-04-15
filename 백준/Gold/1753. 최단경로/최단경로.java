@@ -1,14 +1,14 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.PriorityQueue;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        Scanner scan = new Scanner(System.in);
-        int v = scan.nextInt();
-        int e = scan.nextInt();
-        int start = scan.nextInt();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        int v = Integer.parseInt(st.nextToken());
+        int e = Integer.parseInt(st.nextToken());
+        int start = Integer.parseInt(br.readLine());
         int[] answer = new int[v+1];
 
         Arrays.fill(answer, Integer.MAX_VALUE);
@@ -19,9 +19,10 @@ public class Main {
         }
 
         for (int i = 0; i < e; i++) {
-            int from = scan.nextInt();
-            int to = scan.nextInt();
-            int cost = scan.nextInt();
+            st = new StringTokenizer(br.readLine(), " ");
+            int from = Integer.parseInt(st.nextToken());
+            int to = Integer.parseInt(st.nextToken());
+            int cost = Integer.parseInt(st.nextToken());
             graph.get(from).add(new Vertex(to, cost));
         }
 
@@ -49,7 +50,7 @@ public class Main {
         for (int i = 1; i < answer.length; i++) {
             sb.append(answer[i] == Integer.MAX_VALUE ? "INF" : answer[i]).append('\n');
         }
-        
+
         System.out.println(sb);
     }
 

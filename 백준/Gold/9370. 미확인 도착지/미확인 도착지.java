@@ -31,8 +31,10 @@ public class Main {
                 int to = Integer.parseInt(st.nextToken());
                 int cost = Integer.parseInt(st.nextToken()) * 2;
 
+                // 꼭 지나가야 하는 간선의 경우에 COST를 홀수로 둔다.
+                // 짝 + 짝 = 짝, 짝 + 홀 = 홀 이라는 것을 이용한다.
                 if (((from == g) && (to == h)) || ((from == h) && (to == g))) {
-                    cost = cost - 1;
+                    cost--;
                 }
 
                 graph.get(from).add(new Vertex(to, cost));
@@ -44,6 +46,7 @@ public class Main {
                 int dest = Integer.parseInt(br.readLine());
                 long count = count(startPoint, dest, graph);
 
+                // 지나가야하는 간선을 지나갔다면 거리의 수는 홀수일 것이므로 홀수면 지나갔다는것을 알 수 있다!
                 if (count % 2 == 1) {
                     answer.add(dest);
                 }
@@ -61,6 +64,7 @@ public class Main {
 
     public static long count(int start, int end, ArrayList<ArrayList<Vertex>> graph) {
         int[] answer = new int[v + 1];
+        // 원래 MAX_VALUE 로 설정했는데, 홀수라서 더해지는 경우도 존재할 수 있어서, 짝수가 되도록 /2 *2
         Arrays.fill(answer, Integer.MAX_VALUE / 2 * 2);
 
         PriorityQueue<Vertex> queue = new PriorityQueue<>();

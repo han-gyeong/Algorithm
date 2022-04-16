@@ -29,24 +29,22 @@ public class Main {
                 st = new StringTokenizer(br.readLine(), " ");
                 int from = Integer.parseInt(st.nextToken());
                 int to = Integer.parseInt(st.nextToken());
-                int cost = Integer.parseInt(st.nextToken());
+                int cost = Integer.parseInt(st.nextToken()) * 2;
+
+                if (((from == g) && (to == h)) || ((from == h) && (to == g))) {
+                    cost = cost - 1;
+                }
 
                 graph.get(from).add(new Vertex(to, cost));
                 graph.get(to).add(new Vertex(from, cost));
             }
 
-            int gtoh = graph.get(g).stream().filter(o -> o.vertex == h).findFirst().get().cost;
-
             ArrayList<Integer> answer = new ArrayList<>();
             for (int i = 0; i < t; i++) {
-                int tmp = 0;
                 int dest = Integer.parseInt(br.readLine());
-                long startToDest = count(startPoint, dest, graph);
+                long count = count(startPoint, dest, graph);
 
-                long startToGToDest = count(startPoint, g, graph) + gtoh + count(h, dest, graph);
-                long startToHToDest = count(startPoint, h, graph) + gtoh + count(g, dest, graph);
-
-                if (startToDest >= Math.min(startToGToDest, startToHToDest)) {
+                if (count % 2 == 1) {
                     answer.add(dest);
                 }
             }
@@ -63,7 +61,7 @@ public class Main {
 
     public static long count(int start, int end, ArrayList<ArrayList<Vertex>> graph) {
         int[] answer = new int[v + 1];
-        Arrays.fill(answer, Integer.MAX_VALUE);
+        Arrays.fill(answer, Integer.MAX_VALUE / 2 * 2);
 
         PriorityQueue<Vertex> queue = new PriorityQueue<>();
         answer[start] = 0;

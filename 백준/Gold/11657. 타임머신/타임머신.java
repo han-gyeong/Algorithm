@@ -21,6 +21,8 @@ public class Main {
         }
 
         boolean isLoop = false;
+
+        // V-1 번으로 최단거리 탐색이 완료, 1번 더해서 음수 가중치가 있는지 확인하기
         for (int i = 0; i < n; i++) {
             for (Road road : roads) {
                 if (arr[road.from] == Integer.MAX_VALUE) {

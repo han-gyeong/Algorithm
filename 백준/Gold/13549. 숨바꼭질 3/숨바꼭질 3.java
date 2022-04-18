@@ -3,8 +3,8 @@ import java.util.PriorityQueue;
 import java.util.Scanner;
 
 public class Main {
-    static int[] dx = new int[] {0, -1, 1}; // 마지막은 *2를 위한 자리
-    static int[] cost = new int[] {0, 1, 1};
+    static int[] dx = new int[] {-1, 1, 0}; // 마지막은 *2를 위한 자리
+    static int[] cost = new int[] {1, 1, 0};
     public static void main(String[] args) throws Exception {
         Scanner scan = new Scanner(System.in);
         int n = scan.nextInt();
@@ -23,7 +23,7 @@ public class Main {
                 continue;
             }
 
-            dx[0] = move.location;
+            dx[2] = move.location;
             for (int i = 0; i < dx.length; i++) {
                 int to = move.location + dx[i];
                 int price = move.price + cost[i];

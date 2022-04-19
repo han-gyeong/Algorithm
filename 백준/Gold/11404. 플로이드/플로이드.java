@@ -1,11 +1,13 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
     public static final int INF = 100_000_001;
     public static void main(String[] args) throws Exception {
-        Scanner scan = new Scanner(System.in);
-        int n = scan.nextInt();
-        int m = scan.nextInt();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        int m = Integer.parseInt(br.readLine());
 
         int[][] arr = new int[n+1][n+1];
 
@@ -17,10 +19,12 @@ public class Main {
         }
 
         // 값 채우기
+        StringTokenizer st;
         for (int i = 0; i < m; i++) {
-            int from = scan.nextInt();
-            int to = scan.nextInt();
-            int cost = scan.nextInt();
+            st = new StringTokenizer(br.readLine(), " ");
+            int from = Integer.parseInt(st.nextToken());
+            int to = Integer.parseInt(st.nextToken());
+            int cost = Integer.parseInt(st.nextToken());
 
             arr[from][to] = Math.min(arr[from][to], cost);
         }

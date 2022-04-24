@@ -5,13 +5,13 @@ import java.util.StringTokenizer;
 public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
         int n = Integer.parseInt(st.nextToken());
         int s = Integer.parseInt(st.nextToken());
 
         int[] arr = new int[n];
-        st = new StringTokenizer(br.readLine(), " ");
+        st = new StringTokenizer(br.readLine());
         for (int i = 0; i < n; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
         }
@@ -23,19 +23,10 @@ public class Main {
         for (int rt = 0; rt < n; rt++) {
             sum += arr[rt];
 
-            if (sum < s) {
-                continue;
-            } else {
+            while (sum >= s && lt <= rt) {
                 answer = Math.min(answer, rt  - lt + 1);
-            }
-
-            while (sum >= s && lt < rt) {
                 sum -= arr[lt];
                 lt++;
-
-                if (sum >= s) {
-                    answer = Math.min(answer, rt  - lt + 1);
-                }
             }
         }
 

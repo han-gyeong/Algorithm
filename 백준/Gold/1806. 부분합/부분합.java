@@ -25,9 +25,7 @@ public class Main {
 
             if (sum < s) {
                 continue;
-            }
-
-            if (sum >= s) {
+            } else {
                 answer = Math.min(answer, rt  - lt + 1);
             }
 

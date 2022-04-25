@@ -1,10 +1,11 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        Scanner scan = new Scanner(System.in);
-        int n = scan.nextInt();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
 
         int lt = 0;
         int sum = 0;
@@ -29,9 +30,10 @@ public class Main {
         System.out.println(answer);
     }
 
+    // N 이하의 소수들을 반환해주는 함수
     public static int[] getPrimeNumbersBeforeN(int n) {
-        int[] arr = new int[n+1];
         // -1 -> 소수가 아님, 0은 아직 안간 곳, 1은 소수
+        int[] arr = new int[n+1];
         arr[0] = -1;
         arr[1] = -1;
 

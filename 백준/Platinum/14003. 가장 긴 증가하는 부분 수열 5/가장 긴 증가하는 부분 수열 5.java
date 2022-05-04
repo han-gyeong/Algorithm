@@ -18,8 +18,7 @@ public class Main {
                 LIS.add(new Element(arr[i], LIS.get(LIS.size() - 1)));
             } else {
                 int lowerBound = lowerBound(arr[i], LIS);
-                Element previous = (lowerBound == 0) ? null : LIS.get(lowerBound - 1);
-                LIS.set(lowerBound, new Element(arr[i], previous));
+                LIS.set(lowerBound, new Element(arr[i], (lowerBound == 0) ? null : LIS.get(lowerBound - 1)));
             }
         }
 
@@ -28,13 +27,10 @@ public class Main {
 
         Stack<Integer> stack = new Stack<>();
         Element lastElement = LIS.get(LIS.size() - 1);
-        while (true) {
+
+        while (!(lastElement == null)) {
             stack.add(lastElement.value);
             lastElement = lastElement.previous;
-
-            if (lastElement == null) {
-                break;
-            }
         }
 
         while (!stack.isEmpty()) {

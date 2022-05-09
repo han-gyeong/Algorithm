@@ -16,6 +16,7 @@ public class Main {
         System.out.println(lcs);
     }
 
+    // LCS의 길이 찾기
     private static int LCS(String a, String b, int[][] dp) {
         for (int i = 0; i < dp.length; i++) {
             for (int j = 0; j < dp[0].length; j++) {
@@ -35,6 +36,7 @@ public class Main {
         return dp[a.length()][b.length()];
     }
 
+    // 역으로 LCS 찾아가기
     private static String findLCS(String a, String b, int[][] dp) {
         StringBuilder sb = new StringBuilder();
         int x = a.length();
@@ -43,13 +45,13 @@ public class Main {
         while (dp[x][y] != 0 && x != 0 && y != 0) {
             if (a.charAt(x - 1) == b.charAt(y - 1)) {
                 sb.append(a.charAt(x - 1));
-                x -= 1;
-                y -= 1;
+                x--;
+                y--;
             } else {
                 if (dp[x][y] == dp[x-1][y]) {
-                    x = x-1;
+                    x--;
                 } else {
-                    y = y-1;
+                    y--;
                 }
             }
         }

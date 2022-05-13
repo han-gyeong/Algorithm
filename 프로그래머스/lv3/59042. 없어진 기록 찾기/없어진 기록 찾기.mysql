@@ -1,0 +1,2 @@
+-- 코드를 입력하세요
+SELECT ou.animal_id, ou.name from animal_outs ou left outer join animal_ins ins on ou.animal_id = ins.animal_id where ins.animal_id is null order by ou.animal_id asc

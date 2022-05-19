@@ -6,16 +6,14 @@ import java.util.HashSet;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] split = br.readLine().split("");
+        String input = br.readLine();
 
         HashSet<String> wordSet = new HashSet<>();
-        StringBuilder sb;
-        for (int i = 0; i < split.length; i++) {
-            sb = new StringBuilder();
-            for (int j = i; j < split.length; j++) {
-                sb.append(split[j]);
-                wordSet.add(sb.toString());
+        for (int i = 0; i < input.length(); i++) {
+            for (int j = i + 1; j <= input.length(); j++) {
+                wordSet.add(input.substring(i, j));
             }
+
         }
 
         System.out.println(wordSet.size());
